@@ -18,6 +18,7 @@ IMG_TRIM_HEIGHT = 200
 SHUTTER_SPEED = 300225
 WAIT_TIME = 100
 
+CAPTURE_POSITION = False;
 POSITION_FROM_WORLD = False
 MARKER_LENGTH = 0.03885
 MARKER_INDEX = 0    # index is defined by opencv.aruco
@@ -33,8 +34,14 @@ MARKER_POSITION_PATH = 'position.txt'
 
 # get POSITION_FROM_WORLD from args
 args = sys.argv
-if len(args) > 1 and args[1] == 'world':
-    POSITION_FROM_WORLD = True
+if len(args) > 1:
+    CAPTURE_POSITION = True;
+    if args[1] == 'world':
+        POSITION_FROM_WORLD = True
+    elif args[1] == 'view':
+        POSITION_FROM_WOELD = False
+else:
+    CAPTURE_POSITION = False;
 
 # set Camera
 system = PySpin.System.GetInstance()
